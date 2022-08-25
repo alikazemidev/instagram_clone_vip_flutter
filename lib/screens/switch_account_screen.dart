@@ -1,6 +1,6 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class SwitchAccountScreen extends StatelessWidget {
   const SwitchAccountScreen({Key? key}) : super(key: key);
@@ -13,7 +13,7 @@ class SwitchAccountScreen extends StatelessWidget {
         children: [
           Expanded(
             child: Stack(
-              alignment: AlignmentDirectional.bottomCenter,
+              alignment: AlignmentDirectional.center,
               children: [
                 Container(
                   decoration: BoxDecoration(
@@ -25,40 +25,54 @@ class SwitchAccountScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                Container(
-                  height: 352,
-                  width: 340,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    gradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [
-                        Colors.white.withOpacity(.5),
-                        Colors.white.withOpacity(.2),
-                      ],
+                Positioned(
+                  top: 100,
+                  child: ClipRect(
+                    child: BackdropFilter(
+                      filter: ImageFilter.blur(
+                        sigmaX: 3,
+                        sigmaY: 3,
+                      ),
+                      child: Container(
+                        height: 340,
+                        width: 340,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          gradient: LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            colors: [
+                              Colors.white.withOpacity(.5),
+                              Colors.white.withOpacity(.2),
+                            ],
+                          ),
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Image.asset('images/profile.png'),
+                            Text(
+                              'ali kz',
+                              style: Theme.of(context).textTheme.headline4,
+                            ),
+                            SizedBox(
+                              height: 46,
+                              width: 129,
+                              child: ElevatedButton(
+                                style:
+                                    Theme.of(context).elevatedButtonTheme.style,
+                                onPressed: () {},
+                                child: Text('Confrim'),
+                              ),
+                            ),
+                            Text(
+                              'Switch account',
+                              style: Theme.of(context).textTheme.headline4,
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Image.asset('images/profile.png'),
-                      Text(
-                        'amir ahmad',
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.white,
-                        ),
-                      ),
-                      ElevatedButton(onPressed: () {}, child: Text('Continue')),
-                      Text(
-                        'Switch account',
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.red,
-                        ),
-                      ),
-                    ],
                   ),
                 ),
               ],
@@ -66,12 +80,20 @@ class SwitchAccountScreen extends StatelessWidget {
           ),
           Padding(
             padding: EdgeInsets.only(top: 132, bottom: 63),
-            child: Text(
-              'don`t have an account?',
-              style: TextStyle(
-                fontSize: 20,
-                color: Colors.white,
-              ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'don\'t have an account? / ',
+                  style: Theme.of(context).textTheme.headline4!.copyWith(
+                    color: Colors.grey.shade700,
+                  ),
+                ),
+                 Text(
+                  'sign up',
+                  style: Theme.of(context).textTheme.headline4,
+                ),
+              ],
             ),
           )
         ],
