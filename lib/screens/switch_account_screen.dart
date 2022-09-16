@@ -26,12 +26,12 @@ class SwitchAccountScreen extends StatelessWidget {
                   ),
                 ),
                 Positioned(
-                  top: 100,
+                  top: 210,
                   child: ClipRect(
                     child: BackdropFilter(
                       filter: ImageFilter.blur(
-                        sigmaX: 3,
-                        sigmaY: 3,
+                        sigmaX: 5,
+                        sigmaY: 5,
                       ),
                       child: Container(
                         height: 340,
@@ -86,10 +86,10 @@ class SwitchAccountScreen extends StatelessWidget {
                 Text(
                   'don\'t have an account? / ',
                   style: Theme.of(context).textTheme.headline4!.copyWith(
-                    color: Colors.grey.shade700,
-                  ),
+                        color: Colors.grey.shade700,
+                      ),
                 ),
-                 Text(
+                Text(
                   'sign up',
                   style: Theme.of(context).textTheme.headline4,
                 ),
