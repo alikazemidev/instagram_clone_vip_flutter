@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:instagram_clone_vip_flutter/constants.dart';
 
 class SwitchAccountScreen extends StatelessWidget {
   const SwitchAccountScreen({Key? key}) : super(key: key);
@@ -41,10 +42,7 @@ class SwitchAccountScreen extends StatelessWidget {
                           gradient: LinearGradient(
                             begin: Alignment.topLeft,
                             end: Alignment.bottomRight,
-                            colors: [
-                              Colors.white.withOpacity(.5),
-                              Colors.white.withOpacity(.2),
-                            ],
+                            colors: kgradientWhite ,
                           ),
                         ),
                         child: Column(
