@@ -33,12 +33,51 @@ class _HomeScreenState extends State<HomeScreen> {
           )
         ],
       ),
-      body: Center(
-        child: Column(children: [
-          HeaderPost(),
-          BodyPost(),
-        ]),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+              height: 125,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) {
+                  return index == 0 ? AddStory() : StoryBox();
+                },
+              ),
+            ),
+            GeneratePost(),
+          ],
+        ),
       ),
+    );
+  }
+}
+
+class GeneratePost extends StatelessWidget {
+  const GeneratePost({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      shrinkWrap: true,
+      physics: NeverScrollableScrollPhysics(),
+      itemCount: 5,
+      itemBuilder: (context, index) {
+        return Padding(
+          padding: EdgeInsets.symmetric(vertical: 15.0),
+          child: Column(
+            children: [
+              HeaderPost(),
+              SizedBox(
+                height: 20,
+              ),
+              BodyPost(),
+            ],
+          ),
+        );
+      },
     );
   }
 }
@@ -135,7 +174,7 @@ class HeaderPost extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 17.0),
       child: Row(
         children: [
-          StoryBox(),
+          PorofileStoryBox(),
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: Column(
@@ -162,8 +201,8 @@ class HeaderPost extends StatelessWidget {
   }
 }
 
-class StoryBox extends StatelessWidget {
-  const StoryBox({
+class PorofileStoryBox extends StatelessWidget {
+  const PorofileStoryBox({
     Key? key,
   }) : super(key: key);
 
@@ -188,6 +227,43 @@ class StoryBox extends StatelessWidget {
   }
 }
 
+class StoryBox extends StatelessWidget {
+  const StoryBox({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+          margin: EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+          child: DottedBorder(
+            borderType: BorderType.RRect,
+            radius: Radius.circular(17),
+            padding: EdgeInsets.all(6),
+            strokeWidth: 2,
+            color: kPrimaryColor,
+            dashPattern: [30, 10],
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(15),
+              child: Container(
+                height: 58,
+                width: 58,
+                child: Image.asset('images/profile.png'),
+              ),
+            ),
+          ),
+        ),
+        Text(
+          'test',
+          style: kSubTitlePostStyle,
+        )
+      ],
+    );
+  }
+}
+
 class AddStory extends StatelessWidget {
   const AddStory({
     Key? key,
@@ -196,21 +272,35 @@ class AddStory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(2),
-      width: 60,
-      height: 60,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(17),
-      ),
-      child: Container(
-        width: 60,
-        height: 60,
-        decoration: BoxDecoration(
-          color: kscaffoldColor,
-          borderRadius: BorderRadius.circular(15),
-        ),
-        child: Image.asset('images/icon_plus.png'),
+      margin: EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+      child: Column(
+        children: [
+          Container(
+            padding: EdgeInsets.all(2),
+            width: 64,
+            height: 64,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(17),
+            ),
+            child: Container(
+              width: 60,
+              height: 60,
+              decoration: BoxDecoration(
+                color: kscaffoldColor,
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: Image.asset('images/icon_plus.png'),
+            ),
+          ),
+          SizedBox(
+            height: 16,
+          ),
+          Text(
+            'your story',
+            style: kSubTitlePostStyle,
+          )
+        ],
       ),
     );
   }
